@@ -10,11 +10,12 @@ public class Inventory : MonoBehaviour
 
     private bool inventoryIsOn = false;
     private GameObject[] slots;
+    private GameController gc;
 
     void Start()
     {
         slots = GameObject.FindGameObjectsWithTag("Slot");
-
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
     }
 
@@ -23,6 +24,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryIsOn = !inventoryIsOn;
+            gc.toggleGameState();
         }
        
         if (inventoryIsOn)

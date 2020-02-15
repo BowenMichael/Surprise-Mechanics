@@ -12,16 +12,27 @@ public class Movement : MonoBehaviour
 
     public float runSpeed = 20.0f;
 
+    private GameController gc;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     void Update()
     {
         // Gives a value between -1 and 1
-        horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-        vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        if (gc.getGameState() == true)
+        { 
+            horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+            vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        }
+        else
+        {
+            horizontal = 0;
+            vertical = 0;
+        }
     }
 
     void FixedUpdate()
